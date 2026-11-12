@@ -1,0 +1,44 @@
+[project]
+name = "kaziflow-engine"
+version = "0.1.0"
+description = "WhatsApp-native ordering and booking engine for East African merchants"
+requires-python = ">=3.11"
+dependencies = [
+  "aiosqlite>=0.20.0",
+  "alembic>=1.13.2",
+  "asyncpg>=0.29.0",
+  "cryptography>=43.0.0",
+  "fastapi>=0.115.0",
+  "httpx>=0.27.0",
+  "pydantic-settings>=2.5.2",
+  "psycopg[binary]>=3.2.3",
+  "redis>=5.0.8",
+  "sqlalchemy[asyncio]>=2.0.36",
+  "uvicorn[standard]>=0.30.6",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.3",
+  "pytest-asyncio>=0.24.0",
+  "ruff>=0.7.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+ignore = ["B008"]
+
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
